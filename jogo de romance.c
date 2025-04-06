@@ -19,7 +19,7 @@ int main() {
     char nome_lower[30];
     int finais = 0; // contador de finais únicos
     char jogar_novamente;
-    int finais_vistos[8] = {0}; // vetor que marca os finais vistos
+    int finais_vistos[7] = {0}; // vetor que marca os finais vistos
 
     do {
         // Introdução
@@ -54,8 +54,8 @@ int main() {
             printf("filmes da Disney 🍿 e comédias bobinhas 💕.\n");
             printf("✨👩‍❤️‍👨💍 Final verdadeiro 💍👩‍❤️‍👨✨\n" RESET);
 
-            if (!finais_vistos[7]) {
-                finais_vistos[7] = 1;
+            if (!finais_vistos[6]) {
+                finais_vistos[6] = 1;
                 finais++;
             }
         } else {
@@ -123,7 +123,7 @@ int main() {
                     break;
                 default:
                     printf(VERMELHO "Final secreto: sou burro 🤔\n" RESET);
-                    if (!finais_vistos[6]) { finais_vistos[6] = 1; finais++; }
+                    if (!finais_vistos[3]) { finais_vistos[3] = 1; finais++; }
                     break;
             }
         }
