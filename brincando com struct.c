@@ -35,6 +35,26 @@ int main(){
         printf("\nescreva sua idade:\n");
         scanf("%d", &p.idade);
         printf("\nescreva seu nome :\n");
+        scanf("%s", p.nome);
+        printf("\nescreva sua altura:\n");
+        scanf("%f", &p.altura);
+        
+        printf("\nsua idade:%d\n", p.idade);
+        printf("\nseu nome:%s\n", p.nome);
+        printf("\nsua altura:%f\n", p.altura);
+        
+    
+}
+        strcpy(p.nome,"lucas");
+        
+        printf("\nalterando via codigo\n");
+        printf("\nsua idade :%d\n", p.idade);
+        printf("\nseu nome :%s\n", p.nome);
+        printf("\naltura:%.2f\n", p.altura);
+        
+        printf("\nescreva sua idade:\n");
+        scanf("%d", &p.idade);
+        printf("\nescreva seu nome :\n");
         scanf("%s", &p.nome);
         printf("\nescreva sua altura:\n");
         scanf("%f", &p.altura);
