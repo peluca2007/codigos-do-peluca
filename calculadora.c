@@ -24,6 +24,7 @@ int main() {
         // Converte a string para número (com sscanf) e valida a opção
         if (sscanf(sair, "%d", &opcao) != 1 || opcao < 1 || opcao > 4) {
             printf("\033[1;31mErro: Escolha uma opcao entre 1 e 4 ou digite /exit!\033[0m\n");
+            while (getchar() != '\n'); // Limpa o buffer
             continue;
         }
 
@@ -31,15 +32,19 @@ int main() {
         printf("Digite um valor: ");
         if (scanf("%f", &A) != 1) {
             printf("\033[1;31mErro: Digite um numero valido!\033[0m\n");
+            while (getchar() != '\n'); // Limpa o buffer
             continue;
         }
+        while (getchar() != '\n'); // Limpa o buffer
 
         // Solicita o segundo número
         printf("Digite outro valor: ");
         if (scanf("%f", &B) != 1) {
             printf("\033[1;31mErro: Digite um numero valido!\033[0m\n");
+            while (getchar() != '\n'); // Limpa o buffer
             continue;
         }
+        while (getchar() != '\n'); // Limpa o buffer
 
         // Realiza a operação com base na opção escolhida
         switch (opcao) {
@@ -58,14 +63,12 @@ int main() {
             case 4: // Divisão
                 if (B == 0) {
                     printf("\033[1;31mErro: Divisao por zero nao permitida!\033[0m\n");
-                    continue;
                 } else {
                     resultado = A / B;
                     printf("Resultado: %.2f\n", resultado);
                 }
                 break;
         }
-        // Após mostrar o resultado, o loop recomeça automaticamente
     }
 
     return 0;
