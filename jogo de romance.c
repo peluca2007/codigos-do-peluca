@@ -9,18 +9,26 @@
 #define VERDE     "\033[1;32m"
 #define AZUL      "\033[1;34m"
 #define ROSA      "\033[1;95m"
+#define tam 50
 
 int main() {
     setlocale(LC_ALL, ".UTF-8");
 
     // Variáveis do jogo
-    int amor, amor2, amor3;
-    char nome[30];
-    char nome_lower[30];
+    int menu, amor, amor2, amor3;
+    char nome[tam];
+    char nome_lower[tam];
     int finais = 0; // contador de finais únicos
     char jogar_novamente;
     int finais_vistos[7] = {0}; // vetor que marca os finais vistos
 
+    printf("\n1-Play\n");
+    printf("\n2-Exit\n");
+    scanf("%d", &menu);
+    while (getchar() != '\n');
+    
+switch(menu){
+case 1:
     do {
         // Introdução
         printf("Esse é um mini jogo para a pessoa que eu mais");
@@ -161,7 +169,11 @@ int main() {
         //pessoa saiu do jogo
         printf(VERMELHO "%s, VOCÊ NÃO É A BEAAAA 😭\n" RESET, nome);
     }
-
+break;
+case 2:
+return 1;
+break;
+}
     return 0;
 }
 
