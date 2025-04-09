@@ -12,62 +12,65 @@
 #define tam 50
 
 int main() {
-    setlocale(LC_ALL, ".UTF-8");
+    setlocale(LC_ALL, ".UTF-8"); // Habilita suporte a caracteres especiais
 
     // Variáveis do jogo
-    int menu, amor, amor2, amor3;
-    char nome[tam];
-    char nome_lower[tam];
-    int finais = 0; // contador de finais únicos
-    char jogar_novamente;
-    int finais_vistos[7] = {0}; // vetor que marca os finais vistos
+    int menu, amor, amor2, amor3;       // Controles de opções
+    char nome[tam];                     // Nome digitado pelo jogador
+    char nome_lower[tam];               // Nome convertido para minúsculo
+    int finais = 0;                     // Contador de finais únicos desbloqueados
+    char jogar_novamente;              // Controle para repetir o jogo
+    int finais_vistos[7] = {0};        // Marca quais finais já foram vistos
 
-    while (1) { // loop do menu principal
+    while (1) { // Loop principal do menu
+        // Exibe o menu inicial
         printf("\n1-Play\n");
         printf("2-Exit\n");
         scanf("%d", &menu);
-        while (getchar() != '\n');
+        while (getchar() != '\n'); // Limpa o buffer
 
         switch(menu){
-        case 1:
+        case 1: // Jogar
             do {
+                // Introdução e entrada do nome
                 printf("Esse é um mini jogo para a pessoa que eu mais");
                 printf(VERMELHO " AMO NO MUNDO 🥰\n" RESET);
                 printf("Para começar, digite seu nome:\n");
 
                 fgets(nome, sizeof(nome), stdin);
-                nome[strcspn(nome, "\n")] = 0;
+                nome[strcspn(nome, "\n")] = 0; // Remove o '\n' do final
 
+                // Converte o nome para minúsculas
                 strcpy(nome_lower, nome);
                 for (int i = 0; nome_lower[i]; i++) {
                     nome_lower[i] = tolower(nome_lower[i]);
                 }
 
+                // Verifica se é a Bea para final verdadeiro
                 if (
                     strcmp(nome_lower, "bea") == 0 ||
                     strcmp(nome_lower, "beatriz") == 0 ||
                     strcmp(nome_lower, "beatriz esmy") == 0
                 ) {
+                    // Final verdadeiro
                     printf(ROSA "\n╔════════════════════════════════════╗\n");
                     printf("    💖 VOCÊ DESBLOQUEOU O FINAL 💖    \n");
                     printf("         🌸🌸 VERDADEIRO 🌸🌸          \n");
                     printf("╚════════════════════════════════════╝\n\n" RESET);
-
                     printf(ROSA "Pedro te dá um abraço apertado e diz: 'Eu sabia que era você!'\n");
-                    printf("Vocês vivem felizes para sempre numa cabana com Wi-Fi 📶,\n");
-                    printf("muitos gatinhos 🐱 (inclusive o Lucas ),\n");
-                    printf("filmes da Disney 🍿 e comédias bobinhas 💕.\n");
-                    printf("✨👩‍❤️‍👨💍 Final verdadeiro 💍👩‍❤️‍👨✨\n" RESET);
+                    printf("Vocês vivem felizes para sempre...\n" RESET);
 
+                    // Marca esse final como visto
                     if (!finais_vistos[6]) {
                         finais_vistos[6] = 1;
                         finais++;
                     }
                 } else {
+                    // Diálogo alternativo
                     printf(AZUL "Prazer, %s!\n" RESET, nome);
-                    printf("Meu nome é Pedro, mas você já sabe disso, bakaaa 🚒\n");
                     printf("Você gostaria de sair comigo?\n");
 
+                    // Primeira escolha
                     printf(VERDE "1 - Sim seu lindo 💅\n" RESET);
                     printf(VERDE "2 - Sim 😳\n" RESET);
                     printf(VERMELHO "3 - Não 🙄\n" RESET);
@@ -78,7 +81,8 @@ int main() {
 
                     switch (amor) {
                         case 1:
-                            printf("Você está se achando muito! Quem você acha que é pra falar assim comigo?\n");
+                            // Segunda escolha após resposta atrevida
+                            printf("Você está se achando muito!\n");
                             printf(ROSA "1 - O amor da sua vida 💘\n" RESET);
                             printf(ROSA "2 - A Bea 😇\n" RESET);
                             fgets(entrada, sizeof(entrada), stdin);
@@ -86,11 +90,12 @@ int main() {
 
                             switch (amor2) {
                                 case 1:
-                                    printf(VERMELHO "Não gostei de você 😤 (Pedro pega uma AK-47 e 💥)\nFim brutal 💀\n" RESET);
+                                    // Final brutal
+                                    printf(VERMELHO "Não gostei de você 😤\nFim brutal 💀\n" RESET);
                                     if (!finais_vistos[0]) { finais_vistos[0] = 1; finais++; }
                                     break;
                                 case 2:
-                                    printf("Me prova que você é a Bea 😠\n");
+                                    // Terceira escolha: nome do gato
                                     printf("Me diga o nome do gatinho dela 🐱\n");
                                     printf(AZUL "1 - Lucas 🐾\n" RESET);
                                     printf(AZUL "2 - Fofo 💍\n" RESET);
@@ -98,13 +103,10 @@ int main() {
                                     if (sscanf(entrada, "%d", &amor3) != 1) amor3 = -1;
 
                                     if (amor3 == 1) {
-                                        printf(VERMELHO "Você está certo, mas não gostei da resposta 😾 (bazuca de gatinhos 💥)\nFim tonto 🤪\n" RESET);
+                                        printf(VERMELHO "Você está certo, mas não gostei da resposta 😾\nFim tonto 🤪\n" RESET);
                                         if (!finais_vistos[1]) { finais_vistos[1] = 1; finais++; }
                                     } else if (amor3 == 2) {
-                                        printf(VERDE "Nossa! Você está certa! É você mesmo!! 😍\n");
-                                        printf("Pedro te enche de beijos 😘\n");
-                                        printf("Vocês ficam juntos pra sempre com 2 filhos, 2 gatos, 1 cachorro e uma cacatua 🐦\n");
-                                        printf("Final feliz 🌈\n" RESET);
+                                        printf(VERDE "É você mesmo!! 😍\nFinal feliz 🌈\n" RESET);
                                         if (!finais_vistos[2]) { finais_vistos[2] = 1; finais++; }
                                     } else {
                                         printf(VERMELHO "Final secreto: resposta estranha 🔀\n" RESET);
@@ -118,32 +120,38 @@ int main() {
                             }
                             break;
                         case 2:
-                            printf(VERMELHO "Nossa que sem empolgação... 😑 (Pedro pega uma espada samurai e... 💥)\nFinal sem graça 💤\n" RESET);
+                            // Final sem graça
+                            printf(VERMELHO "Final sem graça 💤\n" RESET);
                             if (!finais_vistos[4]) { finais_vistos[4] = 1; finais++; }
                             break;
                         case 3:
-                            printf(AZUL "Vai tomar no cu 😤 (Pedro vira as costas e vai embora...)\nFinal pacifista ☮️\n" RESET);
+                            // Final pacifista
+                            printf(AZUL "Final pacifista ☮️\n" RESET);
                             if (!finais_vistos[5]) { finais_vistos[5] = 1; finais++; }
                             break;
                         default:
+                            // Final secreto por erro de digitação
                             printf(VERMELHO "Final secreto: sou burro 🤔\n" RESET);
                             if (!finais_vistos[3]) { finais_vistos[3] = 1; finais++; }
                             break;
                     }
                 }
 
+                // Exibe progresso e pergunta se quer jogar de novo
                 printf(AZUL "\nVocê concluiu %d/7 finais únicos! 🏆\n" RESET, finais);
                 printf("Deseja jogar novamente? (s/n): ");
                 scanf(" %c", &jogar_novamente);
-                getchar();
+                getchar(); // limpa o \n
                 printf("\n\n");
 
             } while (jogar_novamente == 's' || jogar_novamente == 'S');
 
+            // Final secreto após todos os finais vistos
             if (finais == 7) {
                 printf(ROSA "\nSe você desbloqueou TODOS os finais, você com certeza é a BEAAAA! 😍\n");
                 printf("Final secreto desbloqueado... 💖\n\n");
 
+                // Coração em ASCII
                 printf(ROSA "      *****       *****\n");
                 printf("   *********** ***********\n");
                 printf("  ***************************\n");
@@ -163,11 +171,10 @@ int main() {
             }
             break;
 
-        case 2:
+        case 2: // Sair
             return 0;
-            break;
 
-        default:
+        default: // Opção inválida
             printf(VERMELHO "Opção inválida! Tente novamente.\n" RESET);
             break;
         }
@@ -175,4 +182,4 @@ int main() {
 
     return 0;
 }
- 
+                
