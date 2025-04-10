@@ -2,6 +2,7 @@
 #include <string.h>
 #include <locale.h>
 #include <ctype.h>
+#include <unistd.h> // Para usar sleep() e usleep()
 
 // Códigos de cor ANSI para deixar o texto colorido no terminal
 #define RESET     "\033[0m"
@@ -15,14 +16,14 @@ int main() {
     setlocale(LC_ALL, ".UTF-8"); // Habilita suporte a caracteres especiais
 
     // Variáveis do jogo
-    int menu, amor, amor2, amor3;       // Controles de opções
-    char nome[tam];                     // Nome digitado pelo jogador
-    char nome_lower[tam];               // Nome convertido para minúsculo
-    int finais = 0;                     // Contador de finais únicos desbloqueados
-    char jogar_novamente;              // Controle para repetir o jogo
-    int finais_vistos[7] = {0};        // Marca quais finais já foram vistos
+    int menu, amor, amor2, amor3;
+    char nome[tam];
+    char nome_lower[tam];
+    int finais = 0;
+    char jogar_novamente;
+    int finais_vistos[8] = {0};
 
-    while (1) { // Loop principal do menu
+    while (1) {
         // Exibe o menu inicial
         printf("\n1-Play\n");
         printf("2-Exit\n");
@@ -30,17 +31,17 @@ int main() {
         while (getchar() != '\n'); // Limpa o buffer
 
         switch(menu){
-        case 1: // Jogar
+        case 1:
             do {
-                // Introdução e entrada do nome
+                // Entrada do nome
                 printf("Esse é um mini jogo para a pessoa que eu mais");
                 printf(VERMELHO " AMO NO MUNDO 🥰\n" RESET);
                 printf("Para começar, digite seu nome:\n");
 
                 fgets(nome, sizeof(nome), stdin);
-                nome[strcspn(nome, "\n")] = 0; // Remove o '\n' do final
+                nome[strcspn(nome, "\n")] = 0;
 
-                // Converte o nome para minúsculas
+                // Converte o nome para minúsculo
                 strcpy(nome_lower, nome);
                 for (int i = 0; nome_lower[i]; i++) {
                     nome_lower[i] = tolower(nome_lower[i]);
@@ -60,13 +61,35 @@ int main() {
                     printf(ROSA "Pedro te dá um abraço apertado e diz: 'Eu sabia que era você!'\n");
                     printf("Vocês vivem felizes para sempre...\n" RESET);
 
-                    // Marca esse final como visto
                     if (!finais_vistos[6]) {
                         finais_vistos[6] = 1;
                         finais++;
                     }
+                } else if (
+                    strcmp(nome_lower, "pedro") == 0 ||
+                    strcmp(nome_lower, "pedro lucas") == 0
+                ) {
+                    // Final de identidade falsa
+                    printf(VERMELHO "\n>>> ERRO: CONFLITO DE IDENTIDADE\n" RESET);
+                    sleep(1);
+                    printf(VERMELHO ">>> PEDRO DETECTADO...\n" RESET);
+                    sleep(1);
+                    printf(VERMELHO "\nSÓ PODE EXISTIR UM PEDROOOO!!! 🔥👹🔥\n" RESET);
+                    sleep(1);
+                   for (int i = 0; i < 5; i++) {
+                   printf("\033[5;31m#####@!#@%%!@$$%%¨&***###~~~#####\033[0m\n");
+                   usleep(150000);
+                }
+                    printf(VERMELHO "\n>>>>> AUTO-EXCLUSÃO INICIADA...\n" RESET);
+                    sleep(1);
+                    printf("Adeus, impostor...\n");
+                     if (!finais_vistos[7]) {
+                        finais_vistos[7] = 1;
+                        finais++;
+                    }
+                    
                 } else {
-                    // Diálogo alternativo
+                    // Diálogo comum
                     printf(AZUL "Prazer, %s!\n" RESET, nome);
                     printf("Você gostaria de sair comigo?\n");
 
@@ -81,7 +104,7 @@ int main() {
 
                     switch (amor) {
                         case 1:
-                            // Segunda escolha após resposta atrevida
+                            // Segunda escolha
                             printf("Você está se achando muito!\n");
                             printf(ROSA "1 - O amor da sua vida 💘\n" RESET);
                             printf(ROSA "2 - A Bea 😇\n" RESET);
@@ -90,12 +113,10 @@ int main() {
 
                             switch (amor2) {
                                 case 1:
-                                    // Final brutal
                                     printf(VERMELHO "Não gostei de você 😤\nFim brutal 💀\n" RESET);
                                     if (!finais_vistos[0]) { finais_vistos[0] = 1; finais++; }
                                     break;
                                 case 2:
-                                    // Terceira escolha: nome do gato
                                     printf("Me diga o nome do gatinho dela 🐱\n");
                                     printf(AZUL "1 - Lucas 🐾\n" RESET);
                                     printf(AZUL "2 - Fofo 💍\n" RESET);
@@ -106,7 +127,10 @@ int main() {
                                         printf(VERMELHO "Você está certo, mas não gostei da resposta 😾\nFim tonto 🤪\n" RESET);
                                         if (!finais_vistos[1]) { finais_vistos[1] = 1; finais++; }
                                     } else if (amor3 == 2) {
-                                        printf(VERDE "É você mesmo!! 😍\nFinal feliz 🌈\n" RESET);
+                                        printf(VERDE "\nÉ você mesmo!! 😍\nFinal feliz 🌈\n" RESET);
+                                        printf(VERDE "\nvocês casam, vocês tiverem 2 filhos, 1 cachorro, 2 gatos e uma cacatua\n" RESET);
+                                        
+                                        
                                         if (!finais_vistos[2]) { finais_vistos[2] = 1; finais++; }
                                     } else {
                                         printf(VERMELHO "Final secreto: resposta estranha 🔀\n" RESET);
@@ -120,34 +144,32 @@ int main() {
                             }
                             break;
                         case 2:
-                            // Final sem graça
                             printf(VERMELHO "Final sem graça 💤\n" RESET);
                             if (!finais_vistos[4]) { finais_vistos[4] = 1; finais++; }
                             break;
                         case 3:
-                            // Final pacifista
                             printf(AZUL "Final pacifista ☮️\n" RESET);
                             if (!finais_vistos[5]) { finais_vistos[5] = 1; finais++; }
                             break;
                         default:
-                            // Final secreto por erro de digitação
                             printf(VERMELHO "Final secreto: sou burro 🤔\n" RESET);
                             if (!finais_vistos[3]) { finais_vistos[3] = 1; finais++; }
                             break;
                     }
                 }
 
-                // Exibe progresso e pergunta se quer jogar de novo
-                printf(AZUL "\nVocê concluiu %d/7 finais únicos! 🏆\n" RESET, finais);
+                // Mostrar progresso e repetir?
+                printf(AZUL "\nVocê concluiu %d/8 finais únicos! 🏆\n" RESET, finais);
                 printf("Deseja jogar novamente? (s/n): ");
                 scanf(" %c", &jogar_novamente);
-                getchar(); // limpa o \n
+                getchar(); // limpa \n
+
                 printf("\n\n");
 
             } while (jogar_novamente == 's' || jogar_novamente == 'S');
 
-            // Final secreto após todos os finais vistos
-            if (finais == 7) {
+            // Final secreto especial se todos os finais foram desbloqueados
+            if (finais == 8) {
                 printf(ROSA "\nSe você desbloqueou TODOS os finais, você com certeza é a BEAAAA! 😍\n");
                 printf("Final secreto desbloqueado... 💖\n\n");
 
@@ -171,10 +193,10 @@ int main() {
             }
             break;
 
-        case 2: // Sair
+        case 2:
             return 0;
 
-        default: // Opção inválida
+        default:
             printf(VERMELHO "Opção inválida! Tente novamente.\n" RESET);
             break;
         }
@@ -182,4 +204,4 @@ int main() {
 
     return 0;
 }
-                
+       
