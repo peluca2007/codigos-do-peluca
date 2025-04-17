@@ -167,7 +167,7 @@ int main() {
             if (finais == 8) {                                         // Final secreto se todos os finais foram vistos
                 printf(ROSA "\nSe você desbloqueou TODOS os finais, você com certeza é a BEAAAA! 😍\n");
                 printf("Final secreto desbloqueado... 💖\n\n");
-
+                usleep(1000000);
                 // Coração em ASCII
                 printf(ROSA "      *****       *****\n");
                 printf("   *********** ***********\n");
