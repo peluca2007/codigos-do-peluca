@@ -113,7 +113,7 @@ int main() {
 
                             switch (amor2) {
                                 case 1:
-                                    printf(VERMELHO "Não gostei de você 😤\nFim brutal 💀\n" RESET);
+                                    printf(VERMELHO "Não gostei de você 😤(pedro pega uma ak-47 e mata você)nFim brutal 💀\n" RESET);
                                     if (!finais_vistos[0]) { finais_vistos[0] = 1; finais++; }
                                     break;
                                 case 2:
@@ -124,7 +124,7 @@ int main() {
                                     if (sscanf(entrada, "%d", &amor3) != 1) amor3 = -1;
 
                                     if (amor3 == 1) {
-                                        printf(VERMELHO "Você está certo, mas não gostei da resposta 😾\nFim tonto 🤪\n" RESET);
+                                        printf(VERMELHO "Você está certo, mas não gostei da resposta 😾(pedro pega uma bazuca de gatinhos e mata Você)\nFim tonto 🤪\n" RESET);
                                         if (!finais_vistos[1]) { finais_vistos[1] = 1; finais++; }
                                     } else if (amor3 == 2) {
                                         printf(VERDE "\nÉ você mesmo!! 😍\nFinal feliz 🌈\n" RESET);
@@ -144,11 +144,11 @@ int main() {
                             }
                             break;
                         case 2:
-                            printf(VERMELHO "Final sem graça 💤\n" RESET);
+                            printf(VERMELHO "Voçê é bem sem graça né %s (pedro pega uma espada samurai e corta Voçê ao meio)Final sem graça 💤\n" RESET);
                             if (!finais_vistos[4]) { finais_vistos[4] = 1; finais++; }
                             break;
                         case 3:
-                            printf(AZUL "Final pacifista ☮️\n" RESET);
+                            printf(AZUL "Nossa vai tomar no %s(pedro vira as costas e vai embora)\nFinal pacifista ☮️\n" RESET);
                             if (!finais_vistos[5]) { finais_vistos[5] = 1; finais++; }
                             break;
                         default:
